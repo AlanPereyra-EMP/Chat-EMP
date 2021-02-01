@@ -44,9 +44,16 @@ const messageBar = document.getElementById('message-bar');
 const remainCharDiv = document.getElementById('remain-char');
 const cempForm = document.getElementById('cemp-form');
 
-messageBar.addEventListener('input', function(){
+messageBar.addEventListener('keypress', function(e){
   var charLength = messageBar.value.length;
   var remainChar = 240 - charLength;
+
+  if(e.key == 'Enter'){
+    cempGetMessages();
+    cempSendMessages(cempUserId);
+    remainChar = 240;
+  }
+
   remainCharDiv.innerHTML = `Carácteres restantes ${remainChar}`;
 });
 
