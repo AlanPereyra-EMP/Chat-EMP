@@ -35,6 +35,7 @@
   width: 90%;
 }
 #cemp-login input{
+  border: 2px solid #777;
   height: 60px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -56,6 +57,7 @@
   outline: none;
 }
 #cemp-login button{
+  border: 2px solid;
   cursor: pointer;
   height: 50px;
   margin-top: 10px;
