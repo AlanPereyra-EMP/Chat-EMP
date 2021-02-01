@@ -21,4 +21,6 @@ Una accedió el usuario, puede mandarle mensajes al admin. En el caso de que el 
 ## Shortcode
 El shortcode es una tan simple como el nombre del plugin y opcionalmente se puede añadir una contraseña para que solo los usuarios que la posean puedan registrarse.
 
-> [Chat-EMP pass="password"]
+> [chat-emp pass="password"]
+
+Si el atributo "pass" (contraseña) es completado con la palabra "false" o este no se rellena la contraseña estará deshabilitada, por ende cualquier usuario tendría permiso para crear un nuevo chat.

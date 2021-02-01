@@ -1,0 +1,289 @@
+#cemp-page{
+  background: #fff;
+  border-top: 60px solid #262626;
+  height: 100vh;/* theme must be support viewport */
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;/* theme must be support viewport */
+}
+#cemp-config-page{
+  background: #eeeeee;
+  display: flex;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+#cemp-login{
+  width: 600px;
+  height: auto;
+  background: #fff;
+  border-radius: 13px;
+  margin: auto;
+  padding-bottom: 40px;
+}
+#cemp-login h2{
+  font-size: 35px;
+  margin-top: 30px;
+  text-align: center;
+}
+#cemp-login input, #cemp-login button, #cemp-login label{
+  border-radius: 13px;
+  display: block;
+  margin: auto;
+  width: 90%;
+}
+#cemp-login input{
+  height: 60px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+#cemp-login label{
+  font-size: 13px;
+  padding: 10px 0;
+}
+#login-error{
+  color: #f44;
+  font-size: 18px!important;
+  margin-bottom: -20px;
+}
+#cemp-login a{
+  color: #005777!important;
+}
+#cemp-login input:focus, #cemp-login button:focus{
+  border: 2px solid #007ca9;
+  outline: none;
+}
+#cemp-login button{
+  cursor: pointer;
+  height: 50px;
+  margin-top: 10px;
+}
+#cemp-login .success{
+  background: #005777;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 60px;
+  margin-top: 50px;
+}
+#cemp-list-display{
+  height: 60px;
+  width: 100%;
+  display: block;
+  background: #005777;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  line-height: 60px;
+  cursor: pointer;
+}
+#cemp-div{
+  background: #eee;
+  display: flex;
+  height: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+#cemp-list{
+  background: #000;
+  height: calc(100% - 60px);
+  overflow: auto;
+  padding-bottom: 100px;
+  width: 20%;
+  z-index: 1;
+}
+#cemp-list::-webkit-scrollbar-thumb{
+  background: #888;
+}
+#cemp-list ul {
+  padding: 0;
+}
+#cemp-list ul li {
+  border-bottom: 1px solid #fff;
+  color: #fff!important;
+  display: grid;
+  font-size: 16px;
+  list-style: none;
+  padding: 41px 10px;
+  text-align: center;
+}
+#cemp-list ul li:hover{
+  background: #262626;
+}
+#cemp-list img{
+  border-radius: 13px!important;
+  height: 50px;
+  margin: auto;
+  width: 50px;
+}
+#new-messages-count{
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  bottom: 140px;
+  font-size: 18px;
+  background: #262626;
+  padding: 15px;
+  color: #fff;
+  border-radius: 50%;
+  min-width: 55px;
+  height: 55px;
+  text-align: center;
+  font-weight: 700;
+}
+#cemp-chat-div{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.cemp-height-admin{
+  height: calc(100% - 60px)!important;
+}
+#cemp-messages{
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 160px solid transparent;
+}
+#cemp-messages div{
+  width: 70%;
+  margin: 20px;
+  display: grid;
+}
+#cemp-messages div.receive{
+  background: #005777;
+  border-radius: 0 20px 20px 20px;
+  color: #fff;
+}
+#cemp-messages div.send{
+  background: #fff;
+  border-radius: 20px 20px 0 20px;
+  color: #000;
+  margin-left: auto;
+}
+#cemp-messages div p{
+  margin: 20px 0;
+}
+#cemp-messages div span{
+  font-size: 14px;
+  padding: 10px 0;
+}
+#cemp-messages div span img{
+  border-radius: 13px!important;
+  height: 27px;
+  margin-right: 15px;
+}
+#cemp-messages div span.rigth{
+  margin-left: auto;
+  margin-right: 20px;
+}
+#cemp-messages div span.left{
+  margin-left: 20px;
+  margin-right: auto;
+}
+#cemp-textarea-div{
+  bottom: 0;
+  max-width: 1200px;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+}
+#remain-char{
+  font-size: 10px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 0 5px 5px;
+}
+#cemp-form{
+  display: flex;
+}
+.form-height{
+  height: 120px;
+}
+#message-bar{
+  border-radius: 13px;
+  margin: auto;
+  max-width: 1200px;
+  width: 100%;
+}
+#message-button{
+  background: #005777;
+  border: none;
+  border-radius: 0 13px 13px 0;
+  color: #fff;
+  padding: 0;
+  visibility: hidden;
+  width: 0%;
+}
+.cemp-d-none{
+  display: none!important;
+}
+/* Mobile support */
+@media(max-width:991px){
+  #cemp-login{
+    height: 100%;
+    overflow: auto;
+  }
+  #cemp-list{
+    position: absolute;
+    width: 100%;
+  }
+  #cemp-textarea-div{
+    margin-bottom: 36px;
+  }
+  .form-height{
+    height: 90px;
+  }
+  #message-bar{
+    border-radius: 13px 0 0 13px;
+    width: 70%;
+  }
+  #message-button{
+    visibility: visible;
+    width: 30%;
+  }
+}
+/* Animation fade in */
+.cemp-fade-in{
+  -khtml-opacity: 0;
+  -webkit-opacity: 0;
+	opacity: 0;
+	transition: all .3s;
+}
+.cemp-faded{
+  -khtml-opacity: 1!important;
+  -webkit-opacity: 1!important;
+	opacity: 1!important;
+}
+/* Prevent default events */
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+textarea {
+  resize: none;
+}
+textarea:focus{
+  outline: none;
+}
+
+/* Empralidad-Theme support */
+#top-notice{
+  display: none;
+}
+#wpadminbar{
+  display: none!important;
+}
+a#btn-searchform, a.fa-dark.fab.fa-whatsapp, .img-fixed {
+  display: none!important;
+}
+.admin-fixed-top {
+  top: 0!important;
+  position: fixed;
+  width: 100vw;
+}
