@@ -1,4 +1,4 @@
-  <?php
+<?php
 add_action('wp_ajax_nopriv_cemp_login_user', 'cemp_login_user');
 add_action('wp_ajax_cemp_login_user', 'cemp_login_user');
 add_action('wp_ajax_nopriv_cemp_logup_user', 'cemp_logup_user');
