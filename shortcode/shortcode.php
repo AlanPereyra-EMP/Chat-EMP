@@ -1,6 +1,5 @@
 <?php
 // "[chat-emp]" shortcode
-
 if(!shortcode_exists('chat-emp')) {
 
   function cemp_shortcode($atts) {
@@ -10,22 +9,23 @@ if(!shortcode_exists('chat-emp')) {
       add_action('wp_enqueue_scripts','add_cemp_login_script');
       add_action('wp_enqueue_scripts','add_cemp_logup_script');
     }else{
-      add_action('wp_enqueue_scripts','add_cemp_messages_script', 10, 1);
-      add_action('wp_enqueue_scripts','add_cemp_get_messages_script');
-      add_action('wp_enqueue_scripts','add_cemp_send_messages_script');
-      if(current_user_can( 'manage_options' ) ){
-        add_action('wp_enqueue_scripts','add_cemp_messages_list_script', 9, 1);
-      }
+      add_action('wp_enqueue_scripts','add_cemp_script', 9, 1);
+      add_action('wp_enqueue_scripts','add_cemp_get_messages_script', 8, 1);
+      add_action('wp_enqueue_scripts','add_cemp_send_messages_script', 8, 1);
+      add_action('wp_enqueue_scripts','add_cemp_messages_list_script', 10, 1);
+
+      has_user_chat();
+      register_users();
     }
 
     $atributes = shortcode_atts( array(
       'pass' => 'false',
       'terms'=> 'false',
-      'poli'=> 'false'
+      'poli'=> 'false',
+      'admin' => ''
     ), $atts );
 
     // Save necessary data on JS global variables
-    $user_id = get_current_user_id();
     $cemp_pass = $atributes['pass'];
     $terms = $atributes['terms'];
     $poli = $atributes['poli'];
@@ -33,7 +33,6 @@ if(!shortcode_exists('chat-emp')) {
     $js_variables = '<script>
                       var cempUrl = "'.$cemp_url.'";
                       var cempPass = "'. $cemp_pass .'"; '.
-                      'var cempUserId = "'. $user_id .'"; '.
                       'var cempTerms = "'. $terms .'"; '.
                       'var cempPoli = "'. $poli .'"; '.
                     '</script>';
@@ -43,18 +42,13 @@ if(!shortcode_exists('chat-emp')) {
     $remain_char = '<div id="remain-char"></div>';
 
     $form = '<form id="cemp-form">
+              <input name="to" type="hidden"/>
               <textarea id="message-bar" class="form-height" name="msg" placeholder="Escribe un mensaje" maxlength="240" cols="40" rows="5"></textarea>
               <button id="message-button" class="form-height cemp-btn-success" type="submit">Enviar</button>
             </form>';
 
-
-    if(current_user_can( 'manage_options' ) ){
-      $list_display = '<div id="cemp-list-display">Ocultar Chats</div>';
-      $user_list = '<div id="cemp-list"></div>';
-    }else {
-      $user_list = '';
-      $list_display = '';
-    }
+    $list_display = '<div id="cemp-list-display">Chats</div>';
+    $user_list = '<div id="cemp-list"></div>';
 
     $login = '<div id="cemp-config-page" class="cemp-d-none"></div>';
 

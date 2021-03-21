@@ -1,25 +1,44 @@
-function cempGetMessages(){
+var interval = '';
+var currentChat = '';
+function cempGetMessages(max, chat){
+  currentChat = chat;
+
   msgRequest = new FormData();
   msgRequest.append( 'action', 'cemp_get_messages' );
+  msgRequest.append( 'max', max );
+  msgRequest.append( 'chat', chat );
 
-  fetch(cempAjax.url, {
-    method: 'POST',
-    mode: 'same-origin',
-    body: msgRequest,
-  })
+  clearInterval(interval);
+
+  cempMessages.innerHTML = `
+  <div class="cemp-loading-div">
+  <p class="cemp-loading-p">Cargando...</p>
+  </div>`;
+
+  var chatLoading = true;
+  interval = setInterval(()=>{
+    if(chatLoading){
+      listShow();
+      cempForm.style.display = 'flex';
+      cempMessages.innerHTML = `
+      <div class="cemp-loading-div">
+      <p class="cemp-loading-p">Cargando...</p>
+      </div>`;
+      chatLoading = false;
+    }
+    fetch(cempAjax.url, {
+      method: 'POST',
+      mode: 'same-origin',
+      body: msgRequest,
+    })
     .then(res => res.json())
     .then(data => {
+      console.log(chat);
       isChatBottom();
-      cempMessages.innerHTML += `
-        <div class="${data.class}">
-          <span class="left">
-            <img src="${data.img}" />
-            ${data.user}
-          </span>
-          <p>${data.message}</p>
-          <span class="rigth">${data.date}</span>
-        </div>`;
+      cempMessages.innerHTML = data;
       scrollDownChats();
     })
+  }, 2000);
+
+
 }
-cempGetMessages();

@@ -2,7 +2,6 @@
 const cempMessages = document.getElementById('cemp-messages');
 const newMessagesDiv = document.getElementById('new-messages-count');
 var isBottom = false;
-var newMessagesCount = 0;
 
 function isChatBottom(){
   if(cempMessages.scrollTop + 100 > (cempMessages.scrollHeight-cempMessages.clientHeight)){
@@ -11,20 +10,18 @@ function isChatBottom(){
     isBottom = false;
   }
 }
+newMessagesDiv.innerHTML = `<i class="fa fa-arrow-down"></i>`;
 function scrollDownChats(){
   if(isBottom){
     cempMessages.scrollTo(0, cempMessages.scrollHeight);
     resetMessagesCount();
   }else{
-    newMessagesCount++;
     newMessagesDiv.classList.remove('cemp-d-none');
-    newMessagesDiv.innerHTML = newMessagesCount;
   }
 }
 function resetMessagesCount(){
   isChatBottom();
   if(isBottom){
-    newMessagesCount = 0;
     newMessagesDiv.classList.add('cemp-d-none');
   }
 }
@@ -49,8 +46,8 @@ messageBar.addEventListener('keypress', function(e){
   var remainChar = 240 - charLength;
 
   if(e.key == 'Enter'){
-    cempGetMessages();
-    cempSendMessages(cempUserId);
+    e.preventDefault();
+    cempSendMessages();
     remainChar = 240;
   }
 
@@ -60,8 +57,7 @@ messageBar.addEventListener('keypress', function(e){
 // Message form prevent default
 cempForm.addEventListener('submit', function(e){
   e.preventDefault();
-  cempGetMessages();
-  cempSendMessages(cempUserId);
+  cempSendMessages();
 });
 
 // Add fade in animation class

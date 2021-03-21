@@ -1,6 +1,11 @@
-function cempSendMessages(id){
+function cempSendMessages(){
+  cempForm.to.value = currentChat;
+  chattingWith = cempForm.to.value;
+  console.log(currentChat);
+
   msg = new FormData(cempForm);
   msg.append( 'action', 'cemp_send_messages' );
+  messageBar.value = '';
 
   fetch(cempAjax.url, {
     method: 'POST',
@@ -9,17 +14,6 @@ function cempSendMessages(id){
   })
     .then(res => res.json())
     .then(data => {
-      isChatBottom();
-      messageBar.value = '';
-      cempMessages.innerHTML += `
-        <div class="${data.class}">
-          <span class="left">
-            <img src="${data.img}" />
-            ${data.user}
-          </span>
-          <p>${data.message}</p>
-          <span class="rigth">${data.date}</span>
-        </div>`;
-      scrollDownChats();
+      console.log(data);
     });
 }

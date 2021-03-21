@@ -19,5 +19,7 @@ require_once plugin_dir_path(__FILE__).'/includes/index.php';
 require_once plugin_dir_path(__FILE__).'/includes/login.php';
 require_once plugin_dir_path(__FILE__).'/includes/cemp-tables.php';
 require_once plugin_dir_path(__FILE__).'/includes/messages.php';
+require_once plugin_dir_path(__FILE__).'/includes/chats.php';
+require_once plugin_dir_path(__FILE__).'/includes/users.php';
 require_once plugin_dir_path(__FILE__).'/shortcode/shortcode.php';
 ?>

@@ -73,7 +73,7 @@
 #cemp-list-display{
   height: 60px;
   width: 100%;
-  display: block;
+  display: none;
   background: #005777;
   max-width: 1200px;
   margin: auto;
@@ -93,7 +93,7 @@
 }
 #cemp-list{
   background: #000;
-  height: calc(100% - 60px);
+  height: 100%;
   overflow: auto;
   padding-bottom: 100px;
   width: 20%;
@@ -108,6 +108,7 @@
 #cemp-list ul li {
   border-bottom: 1px solid #fff;
   color: #fff!important;
+  cursor: pointer;
   display: grid;
   font-size: 16px;
   list-style: none;
@@ -127,7 +128,7 @@
   position: absolute;
   cursor: pointer;
   right: 10px;
-  bottom: 140px;
+  bottom: 160px;
   font-size: 18px;
   background: #262626;
   padding: 15px;
@@ -143,14 +144,25 @@
   position: relative;
   width: 100%;
 }
-.cemp-height-admin{
-  height: calc(100% - 60px)!important;
-}
 #cemp-messages{
+  border-bottom: 160px solid transparent;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  border-bottom: 160px solid transparent;
+  scroll-behavior: smooth;
+}
+.cemp-loading-div{
+  align-items: center;
+  display:flex!important;
+  height: 100%;
+  width: 100%!important;
+  margin:auto!important;
+}
+.cemp-loading-p{
+  display:block;
+  font-size: 40px;
+  text-align:center;
+  width:100%
 }
 #cemp-messages div{
   width: 70%;
@@ -231,9 +243,19 @@
     height: 100%;
     overflow: auto;
   }
+  #cemp-list-display{
+    display: block!important;
+  }
   #cemp-list{
+    height: calc(100% - 60px);
     position: absolute;
     width: 100%;
+  }
+  .cemp-hide-list{
+    display: none!important;
+  }
+  .cemp-height-admin{
+    height: calc(100% - 60px)!important;
   }
   #cemp-textarea-div{
     margin-bottom: 36px;
