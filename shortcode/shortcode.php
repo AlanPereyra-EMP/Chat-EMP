@@ -18,6 +18,7 @@ if(!shortcode_exists('chat-emp')) {
       register_users();
     }
 
+    //TODO: add more admins support via shortcode atrubutes
     $atributes = shortcode_atts( array(
       'pass' => 'false',
       'terms'=> 'false',

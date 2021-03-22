@@ -15,5 +15,6 @@ function cempSendMessages(){
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      // TODO: Add notifications
     });
 }
