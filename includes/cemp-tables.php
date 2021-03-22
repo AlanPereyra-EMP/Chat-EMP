@@ -7,7 +7,7 @@ $user_table_exist = $wpdb->get_var( $users_query ) == $table_users;
 $chats_table_exist = $wpdb->get_var( $chats_query ) == $table_chats;
 $messages_table_exist = $wpdb->get_var( $messages_query ) == $table_messages;
 
-$cemp_db_version = '1.0';
+$cemp_db_version = '1.1';
 
 function cemp_DB() {
 	global $wpdb;
