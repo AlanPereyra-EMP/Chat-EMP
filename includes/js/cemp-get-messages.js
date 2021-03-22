@@ -1,6 +1,7 @@
 var interval = '';
 var currentChat = '';
 function cempGetMessages(max, chat){
+  clearInterval(interval);
   currentChat = chat;
 
   msgRequest = new FormData();
@@ -8,18 +9,12 @@ function cempGetMessages(max, chat){
   msgRequest.append( 'max', max );
   msgRequest.append( 'chat', chat );
 
-  clearInterval(interval);
-
-  cempMessages.innerHTML = `
-  <div class="cemp-loading-div">
-  <p class="cemp-loading-p">Cargando...</p>
-  </div>`;
-
   var chatLoading = true;
   interval = setInterval(()=>{
     if(chatLoading){
       listShow();
       cempForm.style.display = 'flex';
+      cempMessages.style.display = 'block';
       cempMessages.innerHTML = `
       <div class="cemp-loading-div">
       <p class="cemp-loading-p">Cargando...</p>

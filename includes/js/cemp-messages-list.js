@@ -52,6 +52,6 @@ cempForm.style.display = 'none';
 function cempGetThisChat(max, id){
   console.log(id);
   cempChatReady = true;
-
+  cempMessages.style.display = 'none';
   cempGetMessages(max, id);
 }
