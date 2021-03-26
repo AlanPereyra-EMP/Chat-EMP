@@ -5,6 +5,7 @@ function cempSendMessages(){
 
   msg = new FormData(cempForm);
   msg.append( 'action', 'cemp_send_messages' );
+  msg.append( 'chat', currentChat );
   messageBar.value = '';
 
   fetch(cempAjax.url, {

@@ -34,6 +34,11 @@ wp_register_script( 'cemp_send_messages_js', $src );
 function add_cemp_send_messages_script(){
   wp_enqueue_script( 'cemp_send_messages_js', $src);
 }
+$src = plugins_url( 'includes/js/cemp-notifications.js', __DIR__ );
+wp_register_script( 'cemp_notifications_js', $src );
+function add_cemp_notifications_script(){
+  wp_enqueue_script( 'cemp_notifications_js', $src);
+}
 
 // Add Ajax support
 wp_localize_script('cemp_login_js', 'cempAjax', [

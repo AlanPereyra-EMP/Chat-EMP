@@ -47,11 +47,11 @@ cempMessages.innerHTML = `
 </div>`;
 cempForm.style.display = 'none';
 
-// TODO: get current chat id
-// TODO: get max chats messages
-function cempGetThisChat(max, id){
-  console.log(id);
+function cempGetThisChat(max, toId, fromId){
+  cempNotificationPermission();
+  new Notification('Has abierto un nuevo chat', {icon: 'https://empralidad.com.ar/wp-content/uploads/2020/07/Isotipo-v3-fondo-blanco.png', body: 'asd'});
+  console.log(toId, fromId);
   cempChatReady = true;
   cempMessages.style.display = 'none';
-  cempGetMessages(max, id);
+  cempGetMessages(max, toId, fromId);
 }

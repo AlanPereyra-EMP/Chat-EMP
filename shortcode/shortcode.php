@@ -3,6 +3,28 @@
 if(!shortcode_exists('chat-emp')) {
 
   function cemp_shortcode($atts) {
+    //TODO: add more admins support via shortcode atrubutes
+    $atributes = shortcode_atts( array(
+      'pass' => 'false',
+      'terms'=> 'false',
+      'poli'=> 'false',
+      'admins' => '1|11'
+    ), $atts );
+
+    // Save necessary data on JS global variables
+    $cemp_pass = $atributes['pass'];
+    $terms = $atributes['terms'];
+    $poli = $atributes['poli'];
+    $admins = $atributes['admins'];
+    $cemp_url = plugins_url('', __DIR__ );
+    $js_variables = '<script>
+                      var cempUrl = "'.$cemp_url.'";
+                      var cempPass = "'. $cemp_pass .'"; '.
+                      'var cempTerms = "'. $terms .'"; '.
+                      'var cempPoli = "'. $poli .'"; '.
+                      'var cempAdmins = "'. $admins .'";'.
+                    '</script>';
+
     // Enqueue all Js and Css
     add_action('wp_enqueue_scripts','add_cemp_styles', 9, 1);
     if(!is_user_logged_in()){
@@ -12,32 +34,12 @@ if(!shortcode_exists('chat-emp')) {
       add_action('wp_enqueue_scripts','add_cemp_script', 9, 1);
       add_action('wp_enqueue_scripts','add_cemp_get_messages_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_send_messages_script', 8, 1);
+      add_action('wp_enqueue_scripts','add_cemp_notifications_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_messages_list_script', 10, 1);
 
-      has_user_chat();
+      has_user_chat($admins);
       register_users();
     }
-
-    //TODO: add more admins support via shortcode atrubutes
-    $atributes = shortcode_atts( array(
-      'pass' => 'false',
-      'terms'=> 'false',
-      'poli'=> 'false',
-      'admin' => ''
-    ), $atts );
-
-    // Save necessary data on JS global variables
-    $cemp_pass = $atributes['pass'];
-    $terms = $atributes['terms'];
-    $poli = $atributes['poli'];
-    $cemp_url = plugins_url('', __DIR__ );
-    $js_variables = '<script>
-                      var cempUrl = "'.$cemp_url.'";
-                      var cempPass = "'. $cemp_pass .'"; '.
-                      'var cempTerms = "'. $terms .'"; '.
-                      'var cempPoli = "'. $poli .'"; '.
-                    '</script>';
-
 
     // Components
     $remain_char = '<div id="remain-char"></div>';

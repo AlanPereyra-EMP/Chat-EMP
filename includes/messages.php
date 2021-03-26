@@ -7,8 +7,10 @@ add_action('wp_ajax_cemp_send_messages', 'cemp_send_messages');
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 function cemp_get_messages(){
-  $chat_id = $_POST['chat'];
+  $to_id = $_POST['toId'];
+  $from_id = $_POST['fromId'];
   $max = $_POST['max'];
+  $id = get_current_user_id();
 
   global $wpdb;
 
@@ -16,10 +18,10 @@ function cemp_get_messages(){
   $table_usrs = $wpdb->prefix .'cemp_usrs';
 
   $messages = $wpdb->get_results(
-    "SELECT * FROM $table_msgs, $table_usrs WHERE `to_id` = $chat_id GROUP BY `id_m` ORDER BY `id_m` DESC"
+    "SELECT * FROM $table_msgs, $table_usrs WHERE (`to_id` = $to_id OR `from_id` = $to_id) AND (`to_id` = $from_id OR `from_id` = $from_id) GROUP BY `id_m` ORDER BY `id_m` DESC"
   );
   $msg_numb = $wpdb->get_var(
-    "SELECT COUNT(*) FROM $table_msgs WHERE `to_id` = $chat_id"
+    "SELECT COUNT(*) FROM $table_msgs WHERE (`to_id` = $to_id OR `from_id` = $to_id)  AND (`to_id` = $from_id OR `from_id` = $from_id)"
   );
 
   if($max <= $msg_numb){
@@ -55,7 +57,12 @@ function cemp_get_messages(){
 function cemp_send_messages(){
   $msg = $_POST['msg'];
   $user_id = get_current_user_id();
-  $to_id = $_POST['to'];
+  $to_id = explode(',',$_POST['chat']);
+  if($to_id[0] == $user_id){
+    $to_id = $to_id[1];
+  }else{
+    $to_id = $to_id[0];
+  }
   $to_id = intval($to_id);
   $now = date("d/m/Y H:i");
 

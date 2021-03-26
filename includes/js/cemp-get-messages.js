@@ -1,13 +1,15 @@
 var interval = '';
 var currentChat = '';
-function cempGetMessages(max, chat){
+function cempGetMessages(max, toId, fromId){
   clearInterval(interval);
-  currentChat = chat;
+
+  currentChat = [toId,fromId];
 
   msgRequest = new FormData();
   msgRequest.append( 'action', 'cemp_get_messages' );
   msgRequest.append( 'max', max );
-  msgRequest.append( 'chat', chat );
+  msgRequest.append( 'toId', toId );
+  msgRequest.append( 'fromId', fromId );
 
   var chatLoading = true;
   interval = setInterval(()=>{
@@ -28,7 +30,7 @@ function cempGetMessages(max, chat){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(chat);
+      console.log(toId, fromId);
       isChatBottom();
       cempMessages.innerHTML = data;
       scrollDownChats();
