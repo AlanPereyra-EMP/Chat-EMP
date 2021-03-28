@@ -49,7 +49,6 @@ cempForm.style.display = 'none';
 
 function cempGetThisChat(max, toId, fromId){
   cempNotificationPermission();
-  cempNotification('Mensaje nuevo', 'Este es un mensaje de prueba');
   cempChatReady = true;
   cempMessages.style.display = 'none';
   cempGetMessages(max, toId, fromId);
