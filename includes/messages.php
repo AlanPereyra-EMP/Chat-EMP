@@ -77,6 +77,12 @@ function cemp_send_messages(){
     'time' => $now
   );
 
+  // Prevents to send empty messages
+  if($msg == ''){
+    echo json_encode($data);
+    die();
+  }
+
   $format = array(
     '%d','%d','%s','%s'
   );

@@ -49,8 +49,7 @@ cempForm.style.display = 'none';
 
 function cempGetThisChat(max, toId, fromId){
   cempNotificationPermission();
-  new Notification('Has abierto un nuevo chat', {icon: 'https://empralidad.com.ar/wp-content/uploads/2020/07/Isotipo-v3-fondo-blanco.png', body: 'asd'});
-  console.log(toId, fromId);
+  cempNotification('Mensaje nuevo', 'Este es un mensaje de prueba');
   cempChatReady = true;
   cempMessages.style.display = 'none';
   cempGetMessages(max, toId, fromId);

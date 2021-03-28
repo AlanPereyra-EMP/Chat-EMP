@@ -30,7 +30,6 @@ function cempGetMessages(max, toId, fromId){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(toId, fromId);
       isChatBottom();
       cempMessages.innerHTML = data;
       scrollDownChats();

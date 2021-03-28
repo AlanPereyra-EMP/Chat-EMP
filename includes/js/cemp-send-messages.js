@@ -1,7 +1,6 @@
 function cempSendMessages(){
   cempForm.to.value = currentChat;
   chattingWith = cempForm.to.value;
-  console.log(currentChat);
 
   msg = new FormData(cempForm);
   msg.append( 'action', 'cemp_send_messages' );
@@ -15,7 +14,6 @@ function cempSendMessages(){
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       // TODO: Add notifications
     });
 }

@@ -56,4 +56,7 @@ wp_localize_script('cemp_send_messages_js', 'cempAjax', [
 wp_localize_script('cemp_messages_list_js', 'cempAjax', [
   'url' => admin_url('admin-ajax.php')
 ]);
+wp_localize_script('cemp_notifications_js', 'cempAudio', [
+  'notification' => plugins_url( 'includes/sounds/notification.mp3', __DIR__ )
+]);
 ?>

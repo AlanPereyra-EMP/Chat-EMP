@@ -27,3 +27,9 @@ function checkNotificationPromise(){
   }
   return true;
 }
+
+var notiSound = new Audio(cempAudio.notification);
+function cempNotification(msg, body){
+  new Notification(msg, {icon: 'https://empralidad.com.ar/wp-content/uploads/2020/07/Isotipo-v3-fondo-blanco.png', body: body});
+  notiSound.play();
+}
