@@ -8,7 +8,7 @@ if(!shortcode_exists('chat-emp')) {
       'pass' => 'false',
       'terms'=> 'false',
       'poli'=> 'false',
-      'admins' => '1|11'
+      'admins' => '1'
     ), $atts );
 
     // Save necessary data on JS global variables
