@@ -28,7 +28,7 @@
   margin-top: 30px;
   text-align: center;
 }
-#cemp-login input, #cemp-login button, #cemp-login label{
+#cemp-login input, #cemp-login button, #cemp-login label, #cemp-login .change-form{
   border-radius: 13px;
   display: block;
   margin: auto;
@@ -43,6 +43,11 @@
 #cemp-login label{
   font-size: 13px;
   padding: 10px 0;
+}
+#cemp-login .change-form{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 #login-error{
   color: #f44;

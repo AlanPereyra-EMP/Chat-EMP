@@ -5,6 +5,8 @@ function cempGetMessages(max, toId, fromId){
 
   currentChat = [toId,fromId];
 
+  cempNotification('Chat abierto', 'Está todo listo para enviar mensajes')
+
   msgRequest = new FormData();
   msgRequest.append( 'action', 'cemp_get_messages' );
   msgRequest.append( 'max', max );

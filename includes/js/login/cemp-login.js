@@ -21,7 +21,7 @@ function cempLogIn() {
     <input type="text" minlength="3" size="20" name="log" placeholder="Usuario" required/>
     <input type="password" minlength="3" size="20" name="pwd" placeholder="Contraseña" required/>
     <input class="success" type="submit" value="Ingresar" onclick="fetchLogin()"/>
-    <button onclick="cempLogUp()">Registrarse</button>`;
+    <p class="change-form">¿No tienes cuenta? <a href="#" onclick="cempLogUp();">Registrarse</a></p>`;
 }
 cempLogIn();
 

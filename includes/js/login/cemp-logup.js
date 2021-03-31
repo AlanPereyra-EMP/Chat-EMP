@@ -30,8 +30,8 @@ function cempLogUp() {
     ${pass}
     <input name="date" type="hidden" value="${date}"/>
     <button class="success" onclick="fetchLogup()">Registrarse</button>
-    <button onclick="cempLogIn()">Ingresar</button>
-    ${termsPoli}`;
+    ${termsPoli}
+    <p class="change-form">¿Ya tienes cuenta? <a href="#" onclick="cempLogIn();">Ingresar</a></p>`;
 
 }
 function fetchLogup(){
