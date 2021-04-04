@@ -174,7 +174,7 @@
   display: grid;
   overflow: hidden;
   margin: 20px;
-  width: 70%;
+  width: 85%;
 }
 #cemp-messages div.receive{
   background: #005777;
@@ -204,6 +204,7 @@
   margin-right: 20px;
 }
 #cemp-messages div span.left{
+  background: #00577711;
   height: auto;
   padding-left: 20px;
 }
