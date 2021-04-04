@@ -190,6 +190,7 @@
 #cemp-messages div p{
   margin: 20px 0;
   max-width: 100%;
+  overflow: hidden;
 }
 #cemp-messages div span{
   font-size: 12px;
