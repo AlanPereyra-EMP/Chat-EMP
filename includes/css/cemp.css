@@ -261,7 +261,7 @@
     display: none!important;
   }
   .cemp-height-admin{
-    height: 89%!important;
+    height: calc(100% - 60px)!important;
   }
   #cemp-textarea-div{
     margin-bottom: 36px;
@@ -291,10 +291,6 @@
 	opacity: 1!important;
 }
 /* Prevent default events */
-body {
-  height: 100vh;
-  overflow: hidden;
-}
 textarea {
   resize: none;
 }
