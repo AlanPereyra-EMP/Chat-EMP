@@ -265,6 +265,7 @@
   }
   #cemp-textarea-div{
     margin-bottom: 36px;
+    position: fixed;
   }
   .form-height{
     height: 90px;
