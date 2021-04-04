@@ -151,6 +151,7 @@
 }
 #cemp-messages{
   border-bottom: 160px solid transparent;
+  font-size: 18px;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -170,9 +171,10 @@
   width:100%
 }
 #cemp-messages div{
-  width: 70%;
-  margin: 20px;
   display: grid;
+  overflow: hidden;
+  margin: 20px;
+  width: 70%;
 }
 #cemp-messages div.receive{
   background: #005777;
@@ -189,7 +191,7 @@
   margin: 20px 0;
 }
 #cemp-messages div span{
-  font-size: 14px;
+  font-size: 12px;
   padding: 10px 0;
 }
 #cemp-messages div span img{
@@ -202,9 +204,8 @@
   margin-right: 20px;
 }
 #cemp-messages div span.left{
-  height: 40px;
-  margin-left: 20px;
-  margin-right: auto;
+  height: auto;
+  padding-left: 20px;
 }
 #cemp-textarea-div{
   bottom: 0;
