@@ -291,6 +291,14 @@
 	opacity: 1!important;
 }
 /* Prevent default events */
+body {
+  height: 100vh;
+}
+@media(min-width: 992px){
+  body {
+    overflow: hidden;
+  }
+}
 textarea {
   resize: none;
 }
