@@ -133,7 +133,7 @@
   position: absolute;
   cursor: pointer;
   right: 10px;
-  bottom: 160px;
+  bottom: 220px;
   font-size: 18px;
   background: #262626;
   padding: 15px;
@@ -143,10 +143,10 @@
   height: 55px;
   text-align: center;
   font-weight: 700;
+  z-index: 1;
 }
 #cemp-chat-div{
   height: 100%;
-  position: relative;
   width: 100%;
 }
 #cemp-messages{
@@ -277,6 +277,14 @@
   #message-button{
     visibility: visible;
     width: 30%;
+  }
+}
+@media (min-width: 992px){
+  #cemp-chat-div{
+    position: relative;
+  }
+  #new-messages-count{
+    bottom: 160px;
   }
 }
 /* Animation fade in */
