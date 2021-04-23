@@ -14,11 +14,11 @@ cempListDisplay.addEventListener('click', function(){
 
 function listShow(){
   if(listDisplay && cempChatReady){
-    cempListDisplay.innerHTML = 'Mostrar Chats';
+    cempListDisplay.classList.remove('cemp-hide-list');
     cempList.classList.add('cemp-hide-list');
     listDisplay = false;
   }else if(cempChatReady){
-    cempListDisplay.innerHTML = 'Ocultar Chats';
+    cempListDisplay.classList.add('cemp-hide-list');
     cempList.classList.remove('cemp-hide-list');
     listDisplay = true;
   }

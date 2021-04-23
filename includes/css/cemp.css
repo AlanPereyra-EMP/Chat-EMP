@@ -76,16 +76,25 @@
   margin-top: 50px;
 }
 #cemp-list-display{
-  height: 60px;
-  width: 100%;
-  display: none;
   background: #005777;
-  max-width: 1200px;
-  margin: auto;
-  text-align: center;
+  border-radius: 0 30px 30px 0;
   color: #fff;
-  line-height: 60px;
   cursor: pointer;
+  display: none;
+  height: 70px;
+  line-height: 60px;
+  margin: auto;
+  max-width: 1200px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: all .3s;
+  width: 28px;
+  z-index: 3;
+}
+#cemp-list-display-button{
+  padding: 26px 0;
 }
 #cemp-div{
   background: #eee;
@@ -101,8 +110,9 @@
   height: 100%;
   overflow: auto;
   padding-bottom: 100px;
+  transition: all .3s;
   width: 20%;
-  z-index: 1;
+  z-index: 2;
 }
 #cemp-list::-webkit-scrollbar-thumb{
   background: #888;
@@ -111,13 +121,13 @@
   padding: 0;
 }
 #cemp-list ul li {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ffffff55;
   color: #fff!important;
   cursor: pointer;
   display: grid;
   font-size: 16px;
   list-style: none;
-  padding: 41px 10px;
+  padding: 20px 10px;
   text-align: center;
 }
 #cemp-list ul li:hover{
@@ -133,14 +143,14 @@
   position: absolute;
   cursor: pointer;
   right: 10px;
-  bottom: 160px;
+  bottom: 100px;
   font-size: 18px;
   background: #262626;
-  padding: 15px;
+  padding: 11px;
   color: #fff;
   border-radius: 50%;
-  min-width: 55px;
-  height: 55px;
+  min-width: 45px;
+  height: 45px;
   text-align: center;
   font-weight: 700;
   z-index: 1;
@@ -150,7 +160,7 @@
   width: 100%;
 }
 #cemp-messages{
-  border-bottom: 160px solid transparent;
+  border-bottom: 40px solid transparent;
   font-size: 18px;
   height: 100%;
   overflow-y: auto;
@@ -188,18 +198,18 @@
   margin-left: auto;
 }
 #cemp-messages div p{
-  margin: 20px 0;
+  margin: 0;
   max-width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 #cemp-messages div span{
-  font-size: 12px;
+  font-size: 9px;
   padding: 10px 0;
 }
 #cemp-messages div span img{
   border-radius: 13px!important;
-  height: 27px;
-  margin-right: 10px;
+  height: 15px;
+  margin-right: 5px;
 }
 #cemp-messages div span.rigth{
   margin-left: auto;
@@ -224,6 +234,7 @@
 }
 #cemp-form{
   display: flex;
+  font-size: 14px;
 }
 .form-height{
   height: 120px;
@@ -239,6 +250,7 @@
   border: none;
   border-radius: 0 13px 13px 0;
   color: #fff;
+  font-size: 18px;
   padding: 0;
   visibility: hidden;
   width: 0%;
@@ -256,22 +268,22 @@
     display: block!important;
   }
   #cemp-list{
-    height: calc(100% - 60px);
+    height: 100%;
     position: absolute;
     width: 100%;
   }
   .cemp-hide-list{
-    display: none!important;
+    width: 0!important;
+    overflow: hidden;
   }
   .cemp-height-admin{
     height: calc(100% - 60px)!important;
   }
   #cemp-textarea-div{
-    margin-bottom: 36px;
     position: fixed;
   }
   .form-height{
-    height: 90px;
+    height: 60px;
   }
   #message-bar{
     border-radius: 13px 0 0 13px;
@@ -288,6 +300,21 @@
 @media (min-width: 992px){
   #cemp-chat-div{
     position: relative;
+  }
+  #cemp-messages div p{
+    margin: 20px 0;
+  }
+  #cemp-messages{
+    border-bottom: 160px solid transparent!important;
+  }
+  #cemp-messages div span{
+    font-size: 12px!important;
+  }
+  #cemp-form{
+    font-size: 20px!important;
+  }
+  #cemp-messages div span img {
+    height: 20px;
   }
 }
 /* Animation fade in */
@@ -332,4 +359,7 @@ a#btn-searchform, a.fa-dark.fab.fa-whatsapp, .img-fixed {
   top: 0!important;
   position: fixed;
   width: 100vw;
+}
+.buttons-mobile{
+  display: none!important;
 }

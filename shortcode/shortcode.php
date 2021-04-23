@@ -47,10 +47,14 @@ if(!shortcode_exists('chat-emp')) {
     $form = '<form id="cemp-form">
               <input name="to" type="hidden"/>
               <textarea id="message-bar" class="form-height" name="msg" placeholder="Escribe un mensaje" maxlength="240" cols="40" rows="5"></textarea>
-              <button id="message-button" class="form-height cemp-btn-success" type="submit">Enviar</button>
+              <button id="message-button" class="form-height cemp-btn-success" type="submit">
+                <i class="fas fa-paper-plane"></i>
+              </button>
             </form>';
 
-    $list_display = '<div id="cemp-list-display">Chats</div>';
+    $list_display = '<div id="cemp-list-display" class="cemp-hide-list">
+                      <i id="cemp-list-display-button" class="fas fa-comment-dots"></i>
+                    </div>';
     $user_list = '<div id="cemp-list"></div>';
 
     $login = '<div id="cemp-config-page" class="cemp-d-none"></div>';
