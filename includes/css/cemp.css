@@ -331,7 +331,8 @@
 }
 /* Prevent default events */
 body {
-  height: 100vh;
+  height: 101vh;
+  overflow: hidden;
 }
 @media(min-width: 992px){
   body {
