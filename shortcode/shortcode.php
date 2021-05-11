@@ -3,7 +3,6 @@
 if(!shortcode_exists('chat-emp')) {
 
   function cemp_shortcode($atts) {
-    //TODO: add more admins support via shortcode atrubutes
     $atributes = shortcode_atts( array(
       'pass' => 'false',
       'terms'=> 'false',
