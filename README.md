@@ -1,5 +1,5 @@
 # Chat-EMP
-Chat-EMP es un plugin para WordPress que añade un chat a una página en concreto a través de un shortcode. Un administrador podrá entrar desde esta misma página para ver y responder los mensajes enviados desde la web, por usuarios autorizados, en tiempo real.
+Chat-EMP es un plugin para WordPress que añade un chat a una página en concreto a través de un shortcode. Uno o más administradores podrán entrar desde esta misma página para ver y responder los mensajes enviados desde la web, por usuarios autorizados, en tiempo real.
 
 ## Funcionamiento
 Primero se accede a la url en la que se encuentra el shortcode (el contenido que tenga esta página queda deshabilitado y se mostrará en pantalla completa el chat)
@@ -13,14 +13,16 @@ Si el usuario decide registrarse, el plugin puede pedirle o no (a criterio del a
 Una vez haya accedido el plugin comprobará si es un administrador, en el caso de serlo le dará una lista de acceso a todos los chats. En esta lista el administrador verá notificaciones en tiempo real de los mensajes que le envíen los usuarios desde la web.
 
 ### Acceso como usuario (no-admin)
-En el caso de no ser admin, se verificará si tiene un chat previo con el administrador, si lo tiene accede a el, sino crea un nuevo chat con el admin y luego accede a el.
+En el caso de no ser admin, se verificará si tiene un chat previo con el administrador, si lo tiene muestra la lista de el/los admins, sino crea un nuevo chat con el/los admin y luego accede a el.
 
 ### Mensajes
 Una accedió el usuario, puede mandarle mensajes al admin. En el caso de que el admin no esté mirando el chat añadirá una notificación a la lista de mensajes. Luego el admin podrá responder los mensajes al usuario y en el caso de que el usuario no esté en linea este recibirá un email en su correo el cual le avisará que su mensaje ha sido respondido.
 
 ## Shortcode
-El shortcode es una tan simple como el nombre del plugin y opcionalmente se puede añadir una contraseña para que solo los usuarios que la posean puedan registrarse.
+El shortcode es una tan simple como el nombre del plugin "chat-emp", el/los ids de el/los admins como paramentro llamado "admins" y opcionalmente se puede añadir una contraseña en el parametro "pass" para que solo los usuarios que la posean puedan registrarse.
 
-> [chat-emp pass="password"]
+> [chat-emp admins="1|13" pass="password"]
 
-Si el atributo "pass" (contraseña) es completado con la palabra "false" o este no se rellena la contraseña estará deshabilitada, por ende cualquier usuario tendría permiso para crear un nuevo chat.
+Si el atributo "pass" (contraseña) es completado con la palabra "false" o este no se existe, la contraseña estará deshabilitada, por ende cualquier usuario tendría permiso para crear un nuevo chat.
+
+> [chat-emp admins="1|13"]
