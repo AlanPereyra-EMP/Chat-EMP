@@ -1,4 +1,5 @@
 <?php
+global $wpdb;
 $users_query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_users ) );
 $chats_query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_chats ) );
 $messages_query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_messages ) );
