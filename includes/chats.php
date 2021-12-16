@@ -45,7 +45,16 @@ function cemp_get_chat_list(){
   $user_id = get_current_user_id();
 
   $user_list = $wpdb->get_results(
-    "SELECT * FROM $table_chats, $table_usrs WHERE (`user_id1` = $user_id OR `user_id2` = $user_id) AND (`user_id1` != `user_id2`) GROUP BY `id_c`"
+    "SELECT c.id_c, c.user_id1, c.user_id2, u.id_u , u.name, MAX(id_m)
+    FROM $table_chats AS c
+    JOIN $table_usrs AS u ON c.user_id1 = u.id_u
+    LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS m ON c.user_id1 = m.from_id
+    WHERE (c.user_id1 = $user_id OR c.user_id2 = $user_id)
+    AND (c.user_id1 != c.user_id2)
+    AND (c.user_id1 = m.from_id OR c.user_id1 = m.to_id)
+    AND (c.user_id2 = m.from_id OR c.user_id2 = m.to_id)
+    GROUP BY c.id_c, m.to_id
+    ORDER BY max(m.id_m) DESC;"
   );
 
   $count = $user_list;

@@ -12,16 +12,24 @@ function cemp_get_messages(){
   $max = $_POST['max'];
   $id = get_current_user_id();
 
+  if($id != $to_id && $id != $from_id){
+    die();
+  }
+
   global $wpdb;
 
   $table_msgs = $wpdb->prefix .'cemp_msgs';
   $table_usrs = $wpdb->prefix .'cemp_usrs';
 
   $messages = $wpdb->get_results(
-    "SELECT * FROM $table_msgs, $table_usrs WHERE (`to_id` = $to_id OR `from_id` = $to_id) AND (`to_id` = $from_id OR `from_id` = $from_id) GROUP BY `id_m` ORDER BY `id_m` DESC"
+    "SELECT * FROM $table_msgs, $table_usrs
+    WHERE (`to_id` = $to_id OR `from_id` = $to_id) AND (`to_id` = $from_id OR `from_id` = $from_id)
+    GROUP BY `id_m`
+    ORDER BY `id_m` DESC"
   );
   $msg_numb = $wpdb->get_var(
-    "SELECT COUNT(*) FROM $table_msgs WHERE (`to_id` = $to_id OR `from_id` = $to_id)  AND (`to_id` = $from_id OR `from_id` = $from_id)"
+    "SELECT COUNT(*) FROM $table_msgs
+    WHERE (`to_id` = $to_id OR `from_id` = $to_id)  AND (`to_id` = $from_id OR `from_id` = $from_id)"
   );
 
   if($max <= $msg_numb){
