@@ -8,7 +8,7 @@ $user_table_exist = $wpdb->get_var( $users_query ) == $table_users;
 $chats_table_exist = $wpdb->get_var( $chats_query ) == $table_chats;
 $messages_table_exist = $wpdb->get_var( $messages_query ) == $table_messages;
 
-$cemp_db_version = '1.1';
+$cemp_db_version = '1.4';
 
 function cemp_DB() {
 	global $wpdb;
@@ -50,6 +50,15 @@ function cemp_DB() {
 		PRIMARY KEY  (id_m),
 		FOREIGN KEY (`to_id`) REFERENCES `$table_chats`(`user_id1`) ON DELETE CASCADE ON UPDATE CASCADE,
 		FOREIGN KEY (`from_id`) REFERENCES `$table_users`(`id_u`) ON DELETE CASCADE ON UPDATE CASCADE
+	) $charset_collate;";
+
+	// Settings
+	$table_settings = $wpdb->prefix . 'cemp_settings';
+	$sql .= "CREATE TABLE $table_settings (
+		id_s int NOT NULL AUTO_INCREMENT,
+		access varchar(50),
+		mode varchar(50),
+		PRIMARY KEY  (id_s)
 	) $charset_collate;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );

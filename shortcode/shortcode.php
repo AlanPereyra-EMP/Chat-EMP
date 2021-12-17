@@ -4,24 +4,30 @@ if(!shortcode_exists('chat-emp')) {
 
   function cemp_shortcode($atts) {
     $atributes = shortcode_atts( array(
-      'pass' => 'false',
+      'access' => 'false',
+      'mode' => 'default',
       'terms'=> 'false',
       'poli'=> 'false',
-      'admins' => '1'
+      'admins' => '1',
+      'changes' => 'false'
     ), $atts );
 
     // Save necessary data on JS global variables
-    $cemp_pass = $atributes['pass'];
+    $access = $atributes['access'];
+    if($access != 'false'){
+      $cemp_pass = 'true';
+    }
     $terms = $atributes['terms'];
     $poli = $atributes['poli'];
     $admins = $atributes['admins'];
+    $changes = $atributes['changes'];
+    $mode = $atributes['mode'];
     $cemp_url = plugins_url('', __DIR__ );
     $js_variables = '<script>
                       var cempUrl = "'.$cemp_url.'";
                       var cempPass = "'. $cemp_pass .'"; '.
                       'var cempTerms = "'. $terms .'"; '.
                       'var cempPoli = "'. $poli .'"; '.
-                      'var cempAdmins = "'. $admins .'";'.
                     '</script>';
 
     // Enqueue all Js and Css
@@ -38,6 +44,11 @@ if(!shortcode_exists('chat-emp')) {
 
       has_user_chat($admins);
       register_users();
+    }
+
+    // Save settings
+    if($changes == 'true'){
+      cemp_save_settings($access, $mode);
     }
 
     // Components

@@ -12,12 +12,10 @@ function cempLogUp() {
     <input name="access" type="text" placeholder="Permiso de acceso" required/>`;
   }
   if(cempTerms != 'false' && cempPoli != 'false'){
-    var terms = cempTerms;
-    var poli = cempPoli;
     termsPoli = `
     <label>
-      Registrandote estás aceptando los <a href="${terms}">Terminos y condiciones</a>
-      y las <a href="${poli}">Políticas de privacidad</a>
+      Registrandote estás aceptando los <a href="${cempTerms}">Terminos y condiciones</a>
+      y las <a href="${cempPoli}">Políticas de privacidad</a>
     </label>`;
   }
 
@@ -37,12 +35,7 @@ function cempLogUp() {
 function fetchLogup(){
   error = document.getElementById('login-error');
   error.innerHTML = '';
-  if(cempPass != 'false'){
-    if(cempLoginForm.access.value != cempPass){
-      error.innerHTML = 'El permiso de acceso no coincide';
-      return;
-    }
-  }
+
   if(cempLoginForm.log.value.length < 3||cempLoginForm.pwd.value.length < 3||cempLoginForm.email.value.length < 10){
     return
   }
@@ -57,9 +50,11 @@ function fetchLogup(){
   })
   .then(res => res.json())
   .then(data => {
-    if(data.is_registered && data.problem == 'user'){
+    if(data.problem == 'access'){
+      error.innerHTML = 'El permiso de acceso no coincide';
+    }else if(data.problem == 'user'){
       error.innerHTML = 'El nombre usuario ya está registrado';
-    }else if(data.is_registered && data.problem == 'email'){
+    }else if(data.problem == 'email'){
       error.innerHTML = 'El email ya está siendo usado por un usuario';
     }else{
       location.reload();
