@@ -76,24 +76,6 @@
   height: 60px;
   margin-top: 50px;
 }
-#cemp-list-display{
-  background: #005777;
-  border-radius: 0 50% 50% 0;
-  color: #fff;
-  cursor: pointer;
-  display: none;
-  height: 70px;
-  line-height: 60px;
-  margin: auto;
-  max-width: 1200px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  transform: translate(0, -50%);
-  transition: all .3s;
-  width: 28px;
-  z-index: 3;
-}
 #cemp-list-display-button{
   padding: 26px 3px 26px 0;
 }
@@ -168,10 +150,24 @@
   height: 100%;
   width: 100%;
 }
+#cemp-chat-info{
+  align-items: center;
+  display: flex;
+  height: 10%;
+  justify-content: center;
+}
+#cemp-list-display{
+  left: 15px;
+  position: absolute;
+}
+#cemp-chat-config{
+  right: 20px;
+  position: absolute;
+}
 #cemp-messages{
   border-bottom: 40px solid transparent;
   font-size: 18px;
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -272,9 +268,6 @@
   #cemp-login{
     height: 100%;
     overflow: auto;
-  }
-  #cemp-list-display{
-    display: block!important;
   }
   #cemp-list{
     height: 100%;

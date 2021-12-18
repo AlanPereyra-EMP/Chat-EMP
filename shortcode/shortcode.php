@@ -62,9 +62,6 @@ if(!shortcode_exists('chat-emp')) {
               </button>
             </form>';
 
-    $list_display = '<div id="cemp-list-display" class="cemp-hide-list">
-                      <i id="cemp-list-display-button" class="fas fa-comment-dots"></i>
-                    </div>';
     $user_list = '<div id="cemp-list"></div>';
 
     $login = '<div id="cemp-config-page" class="cemp-d-none"></div>';
@@ -72,10 +69,14 @@ if(!shortcode_exists('chat-emp')) {
     return '<div style="height:100vh;"></div>
             <div id="cemp-page">'.
               $login.
-              $list_display.
               '<div id="cemp-div" class="cemp-fade-in" style="opacity:0;">'.
                 $user_list.
                 '<div id="cemp-chat-div">
+                  <div id="cemp-chat-info" class="bg-personalized color-personalized">
+                    <i id="cemp-list-display" class="fa fa-chevron-left"></i>
+                    <i id="cemp-chat-config" class="fas fa-ellipsis-v"></i>
+                    <div id="cemp-chat-name"></div>
+                  </div>
                   <div id="new-messages-count" class="cemp-d-none"></div>
                   <div id="cemp-messages"></div>
                   <div id="cemp-textarea-div">'.
