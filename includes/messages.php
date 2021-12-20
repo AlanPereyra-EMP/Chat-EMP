@@ -36,11 +36,9 @@ function cemp_get_messages(){
     $msg_numb = $max;
   }
   for($i = $msg_numb-1; $i >= 0; $i--){
-    $user_id = $messages[$i]->id_u;
-    $to_id = $messages[$i]->to_id;
-    $from_id = $messages[$i]->from_id;
-    $user_data = get_userdata($from_id);
-    $img = get_avatar_url($from_id);
+    $from_id_for = $messages[$i]->from_id;
+    $user_data = get_userdata($from_id_for);
+    $img = get_avatar_url($from_id_for);
 
     if($from_id == get_current_user_id()){
       $chat_class = 'send';
@@ -59,7 +57,15 @@ function cemp_get_messages(){
     </div>';
   }
 
-  echo json_encode($chat);
+  if($id == $from_id){
+    $chat_name = get_userdata($to_id);
+    $chat_name = $chat_name->user_login;
+  }else{
+    $chat_name = get_userdata($from_id);
+    $chat_name = $chat_name->user_login;
+  }
+
+  echo json_encode(array('chat' => $chat, 'chat_name' => $chat_name));
   die();
 }
 function cemp_send_messages(){

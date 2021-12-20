@@ -9,7 +9,7 @@ function cempLogUp() {
       El permiso de acceso es un código que te dará el admin del sitio.
       Para obtenerlo contacta al administrador.
     </label>
-    <input name="access" type="text" placeholder="Permiso de acceso" required/>`;
+    <input class="cemp-form-input" name="access" type="text" placeholder="Permiso de acceso" required/>`;
   }
   if(cempTerms != 'false' && cempPoli != 'false'){
     termsPoli = `
@@ -22,11 +22,11 @@ function cempLogUp() {
   cempLoginH2.innerHTML = '<h2>Registrarse</h2>';
   cempLoginForm.innerHTML = `
     <label id="login-error"></label>
-    <input name="email" type="text" placeholder="Email" required/>
-    <input name="log" type="text" placeholder="Usuario" required/>
-    <input name="pwd" type="text" placeholder="Contraseña" required/>
+    <input class="cemp-form-input" name="email" type="text" placeholder="Email" required/>
+    <input class="cemp-form-input" name="log" type="text" placeholder="Usuario" required/>
+    <input class="cemp-form-input" name="pwd" type="text" placeholder="Contraseña" required/>
     ${pass}
-    <input name="date" type="hidden" value="${date}"/>
+    <input class="cemp-form-input" name="date" type="hidden" value="${date}"/>
     <button class="success" onclick="fetchLogup()">Registrarse</button>
     ${termsPoli}
     <p class="change-form">¿Ya tienes cuenta? <a href="#" onclick="cempLogIn();">Ingresar</a></p>`;

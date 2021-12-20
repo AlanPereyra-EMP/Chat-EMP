@@ -21,6 +21,7 @@ function listShow(){
     cempListDisplay.classList.add('cemp-hide-list');
     cempList.classList.remove('cemp-hide-list');
     listDisplay = true;
+    cempRemoveSettings();
   }
 }
 

@@ -41,6 +41,8 @@ if(!shortcode_exists('chat-emp')) {
       add_action('wp_enqueue_scripts','add_cemp_send_messages_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_notifications_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_messages_list_script', 10, 1);
+      add_action('wp_enqueue_scripts','add_cemp_settings_script', 10, 1);
+      add_action('wp_enqueue_scripts','add_cemp_logout_script', 10, 1);
 
       has_user_chat($admins);
       register_users();
@@ -66,6 +68,15 @@ if(!shortcode_exists('chat-emp')) {
 
     $login = '<div id="cemp-config-page" class="cemp-d-none"></div>';
 
+    $settings = '<form id="cemp-user-data">
+                  <label id="cemp-error-message"></label>
+                  <input class="cemp-form-input" name="log" type="text" placeholder="Usuario" required/>
+                  <input class="cemp-form-input" name="pwd" type="text" placeholder="Contraseña" required/>
+                  <button class="success btn cemp-form-input mt-5" onclick="">Actualizar</button>
+
+                  <p class="mt-5">¿Cerrar sesión? <a href="'.wp_logout_url().'" >Salir</a></p>
+                </form>';
+
     return '<div style="height:100vh;"></div>
             <div id="cemp-page">'.
               $login.
@@ -73,9 +84,12 @@ if(!shortcode_exists('chat-emp')) {
                 $user_list.
                 '<div id="cemp-chat-div">
                   <div id="cemp-chat-info" class="bg-personalized color-personalized">
-                    <i id="cemp-list-display" class="fa fa-chevron-left"></i>
-                    <i id="cemp-chat-config" class="fas fa-ellipsis-v"></i>
+                    <i id="cemp-list-display" class="fa fa-chevron-left cemp-list-icons"></i>
+                    <i id="cemp-settings-icon" class="fas fa-ellipsis-v cemp-list-icons" onclick="cempShowSettings()"></i>
                     <div id="cemp-chat-name"></div>
+                    <div id="chat-settings">'.
+                    $settings.
+                    '</div>
                   </div>
                   <div id="new-messages-count" class="cemp-d-none"></div>
                   <div id="cemp-messages"></div>

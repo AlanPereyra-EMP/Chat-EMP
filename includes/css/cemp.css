@@ -29,16 +29,17 @@
   margin-top: 30px;
   text-align: center;
 }
-#cemp-login input, #cemp-login button, #cemp-login label, #cemp-login .change-form{
+#cemp-login input, #cemp-login button, #cemp-login label,
+#cemp-login .change-form, .cemp-form-input{
   border-radius: 13px;
   display: block;
   margin: auto;
   width: 90%;
 }
-#cemp-login input{
+.cemp-form-input{
   border: 2px solid #777;
   height: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 20px!important;
   margin-top: 20px;
 }
 #cemp-login label{
@@ -148,24 +149,70 @@
 }
 #cemp-chat-div{
   height: 100%;
+  overflow: hidden;
   width: 100%;
 }
 #cemp-chat-info{
   align-items: center;
-  display: flex;
+  display: flex!important;
   height: 10%;
   justify-content: center;
+}
+.cemp-list-icons{
+  cursor: pointer;
 }
 #cemp-list-display{
   left: 15px;
   position: absolute;
 }
-#cemp-chat-config{
-  right: 20px;
+#cemp-settings-icon{
+  padding: 10px;
   position: absolute;
+  right: 15px;
+}
+#chat-settings{
+  align-items: center;
+  background: #fff;
+  bottom: 0;
+  color: #000;
+  display: flex;
+  font-size: 20px;
+  height: 90%;
+  justify-content: center;
+  max-width: 500px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  transform: translate(500px, 0);
+  transition: .3s ease;
+  width: 100%;
+  z-index: 2;
+}
+#chat-settings.show{
+  transform: translate(0);
+}
+@media (min-width: 768px){
+  #chat-settings{
+    border: 1px solid #000
+  }
+  #cemp-list-display{
+    display: none;
+  }
+}
+#cemp-user-data{
+  margin-top: 30px;
+  width: 100%;
+}
+#cemp-user-data input{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#cemp-user-data a{
+  color: var(--emp-btn-bg)!important;
+  font-weight: 700;
 }
 #cemp-messages{
-  border-bottom: 40px solid transparent;
+  border-bottom: 90px solid transparent;
   font-size: 18px;
   height: 90%;
   overflow-y: auto;
@@ -280,9 +327,6 @@
   .cemp-hide-list{
     width: 0!important;
     overflow: hidden;
-  }
-  .cemp-height-admin{
-    height: calc(100% - 60px)!important;
   }
   #cemp-textarea-div{
     position: fixed;

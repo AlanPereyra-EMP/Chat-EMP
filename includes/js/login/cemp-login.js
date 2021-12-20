@@ -18,9 +18,9 @@ function cempLogIn() {
   cempLoginH2.innerHTML = 'Ingresar';
   cempLoginForm.innerHTML = `
     <label id="login-error"></label>
-    <input type="text" minlength="3" size="20" name="log" placeholder="Usuario" required/>
-    <input type="password" minlength="3" size="20" name="pwd" placeholder="Contraseña" required/>
-    <input class="success" type="submit" value="Ingresar" onclick="fetchLogin()"/>
+    <input class="cemp-form-input" type="text" minlength="3" size="20" name="log" placeholder="Usuario" required/>
+    <input class="cemp-form-input" type="password" minlength="3" size="20" name="pwd" placeholder="Contraseña" required/>
+    <input class="success cemp-form-input" type="submit" value="Ingresar" onclick="fetchLogin()"/>
     <p class="change-form">¿No tienes cuenta? <a href="#" onclick="cempLogUp();">Registrarse</a></p>`;
 }
 cempLogIn();
