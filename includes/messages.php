@@ -40,7 +40,7 @@ function cemp_get_messages(){
     $user_data = get_userdata($from_id_for);
     $img = get_avatar_url($from_id_for);
 
-    if($from_id == get_current_user_id()){
+    if($from_id_for == get_current_user_id()){
       $chat_class = 'send';
     }else{
       $chat_class = 'receive';
