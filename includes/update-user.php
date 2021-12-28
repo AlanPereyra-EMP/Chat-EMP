@@ -23,23 +23,24 @@ function cemp_update_user(){
   $user_pass = $current_user->data->user_pass;
   $user_id = $current_user->ID;
 
-  if (!($user && wp_check_password( $old_pass, $user_pass, $user_ID ))) {
-    echo json_encode(array('status' => 'fail', 'problem' => 'old_pass');
-    die();;
+  if (!$user && !wp_check_password( $old_pass, $user_pass, $user_ID )) {
+    echo json_encode(array('status' => 'fail', 'problem' => 'old_pass'));
+    die();
   }
 
   if($new_user != ''){
-    $update_login = wp_update_user( array( 'ID' => $user_id, 'user_login' => $new_user ) )
+    $update_login = wp_update_user( array( 'ID' => $user_id, 'user_login' => $new_user ) );
   }
   if($new_pass != ''){
-    $update_pass = wp_update_user( array( 'ID' => $user_id, 'user_pass' => $new_pass ) )
+    $update_pass = wp_update_user( array( 'ID' => $user_id, 'user_pass' => $new_pass ) );
   }
 
   if(!is_wp_error($update_login) && !is_wp_error($update_pass)){
     echo json_encode(array('status' => 'success'));
     die();
   }else{
-    echo json_encode(array('status' => 'fail', 'problem' => 'update');
+    echo json_encode(array('status' => 'fail', 'problem' => 'update'));
+    die();
   }
 }
 ?>
