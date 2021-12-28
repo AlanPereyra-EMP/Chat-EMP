@@ -1,5 +1,7 @@
 var interval = '';
 var currentChat = '';
+var chatLoading = false;
+
 function cempGetMessages(max, toId, fromId){
   clearInterval(interval);
 
@@ -11,17 +13,20 @@ function cempGetMessages(max, toId, fromId){
   msgRequest.append( 'toId', toId );
   msgRequest.append( 'fromId', fromId );
 
-  interval = setInterval(loadindMsgs(), 2000);
+  chatLoading = true;
+  loadindMsgs();
+  interval = setInterval(() => {loadindMsgs()}, 1000);
 }
 
 function loadindMsgs(afterSettings) {
-  var chatLoading = true;
   if(chatLoading){
     if (!afterSettings) {
       listShow();
     }
     cempRemoveSettings();
     afterSettings = false;
+    chatLoading = false;
+
     cempForm.style.display = 'flex';
     cempMessages.style.display = 'block';
     cempMessages.innerHTML = `
@@ -29,12 +34,11 @@ function loadindMsgs(afterSettings) {
     <p class="cemp-loading-p">Cargando...</p>
     </div>`;
     cempChatName.innerHTML = 'Cargando...';
-    chatLoading = false;
   }
   fetch(cempAjax.url, {
     method: 'POST',
     mode: 'same-origin',
-    body: msgRequest,
+    body: msgRequest
   })
   .then(res => res.json())
   .then(data => {

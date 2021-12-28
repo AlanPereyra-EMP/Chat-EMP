@@ -8,7 +8,8 @@ function cempRemoveSettings(){
     chatSettings.classList.remove('show');
     cempSettingsDisplay = false;
     afterSettings = true;
-    interval = setInterval(loadindMsgs(afterSettings), 2000);
+    loadindMsgs(afterSettings);
+    interval = setInterval(() => {loadindMsgs()}, 1000);
     return;
   }
 }

@@ -35,7 +35,7 @@ function cempUpdateUser(){
     .then(res => res.json())
     .then(data => {
       if(data.status == 'success'){
-        error.innerHTML = '';
+        location.reload();
       }else if(data.problem == 'user'){
         error.innerHTML = 'El usuario no coincide';
         log.classList.add('error');

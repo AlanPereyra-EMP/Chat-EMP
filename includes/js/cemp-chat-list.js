@@ -29,12 +29,8 @@ function cempGetChatList() {
   let data = new FormData();
   data.append( 'action', 'cemp_get_chat_list' );
 
-  var chatsLoading = true;
+  cempList.innerHTML = `<span class="cemp-loading-list">Cargando...</span>`;
   setInterval(()=>{
-    if(chatsLoading){
-      cempList.innerHTML = `<span class="cemp-loading-list">Cargando...</span>`;
-      chatsLoading = false;
-    }
     fetch(cempAjax.url, {
       method: 'POST',
       mode: 'same-origin',
