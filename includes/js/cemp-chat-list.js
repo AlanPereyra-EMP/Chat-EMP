@@ -25,7 +25,6 @@ function listShow(){
   }
 }
 
-// Todo fecth list of chats
 function cempGetChatList() {
   let data = new FormData();
   data.append( 'action', 'cemp_get_chat_list' );
@@ -41,10 +40,10 @@ function cempGetChatList() {
       mode: 'same-origin',
       body: data
     })
-    .then(res => res.json())
-    .then(data => {
-      cempList.innerHTML = `${data}`;
-    });
+      .then(res => res.json())
+      .then(data => {
+        cempList.innerHTML = `${data}`;
+      });
   }, 2000);
 }
 cempGetChatList();

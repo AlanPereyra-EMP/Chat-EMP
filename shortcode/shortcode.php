@@ -40,9 +40,9 @@ if(!shortcode_exists('chat-emp')) {
       add_action('wp_enqueue_scripts','add_cemp_get_messages_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_send_messages_script', 8, 1);
       add_action('wp_enqueue_scripts','add_cemp_notifications_script', 8, 1);
-      add_action('wp_enqueue_scripts','add_cemp_messages_list_script', 10, 1);
+      add_action('wp_enqueue_scripts','add_cemp_chat_list_script', 10, 1);
       add_action('wp_enqueue_scripts','add_cemp_settings_script', 10, 1);
-      add_action('wp_enqueue_scripts','add_cemp_logout_script', 10, 1);
+      add_action('wp_enqueue_scripts','add_cemp_update_user_script', 10, 1);
 
       has_user_chat($admins);
       register_users();
@@ -69,12 +69,21 @@ if(!shortcode_exists('chat-emp')) {
     $login = '<div id="cemp-config-page" class="cemp-d-none"></div>';
 
     $settings = '<form id="cemp-user-data">
-                  <label id="cemp-error-message"></label>
-                  <input class="cemp-form-input" name="log" type="text" placeholder="Usuario" required/>
-                  <input class="cemp-form-input" name="pwd" type="text" placeholder="Contraseña" required/>
-                  <button class="success btn cemp-form-input mt-5" onclick="">Actualizar</button>
-
-                  <p class="mt-5">¿Cerrar sesión? <a href="'.wp_logout_url().'" >Salir</a></p>
+                  <h4>Actualizar datos</h4>
+                  <input id="cemp-log" class="cemp-form-input" name="log" type="text" placeholder="Nuevo usuario"/>
+                  <input id="cemp-log-confirm" class="cemp-form-input" name="log-confirm" type="text" placeholder="Repetir usuario"/>
+                  <input id="cemp-pwd" class="cemp-form-input" name="pwd" type="text" placeholder="Nueva contraseña"/>
+                  <input id="cemp-pwd-confirm" class="cemp-form-input" name="pwd-confirm" type="text" placeholder="Repetir contraseña"/>
+                  <br>
+                  <input id="cemp-pwd-old" class="cemp-form-input" name="pwd-old" type="text" placeholder="Contraseña actual" required/>
+                  <label id="login-error"></label>
+                  <button class="success btn cemp-form-input mt-5" onclick="cempUpdateUser();">Actualizar</button>
+                  <label>
+                  Actualizando tus datos estás aceptando los <a id="cemp-update-terms">Terminos y condiciones</a>
+                  y las <a id="cemp-update-poli">Políticas de privacidad</a>
+                  </label>
+                  <p class="mt-5">¿Cerrar sesión? <a href="'.wp_logout_url(get_permalink()).'" >Salir</a></p>
+                  <br>
                 </form>';
 
     return '<div style="height:100vh;"></div>
@@ -85,7 +94,7 @@ if(!shortcode_exists('chat-emp')) {
                 '<div id="cemp-chat-div">
                   <div id="cemp-chat-info" class="bg-personalized color-personalized">
                     <i id="cemp-list-display" class="fa fa-chevron-left cemp-list-icons"></i>
-                    <i id="cemp-settings-icon" class="fas fa-ellipsis-v cemp-list-icons" onclick="cempShowSettings()"></i>
+                    <i id="cemp-settings-icon" class="fas fa-cog cemp-list-icons" onclick="cempShowSettings();"></i>
                     <div id="cemp-chat-name"></div>
                     <div id="chat-settings">'.
                     $settings.

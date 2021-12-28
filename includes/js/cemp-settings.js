@@ -1,11 +1,14 @@
 var chatSettings = document.getElementById('chat-settings');
+const cempChatName = document.getElementById('cemp-chat-name');
 var cempSettingsDisplay = false;
+var afterSettings = false;
 
 function cempRemoveSettings(){
   if(cempSettingsDisplay){
     chatSettings.classList.remove('show');
     cempSettingsDisplay = false;
-    console.log('asd');
+    afterSettings = true;
+    interval = setInterval(loadindMsgs(afterSettings), 2000);
     return;
   }
 }
@@ -16,7 +19,9 @@ function cempShowSettings(){
     return;
   }
 
+  clearInterval(interval);
+  cempChatName.innerHTML = 'Configuración';
+  afterSettings = false;
   cempSettingsDisplay = true;
-  console.log('asd');
   chatSettings.classList.add('show');
 }

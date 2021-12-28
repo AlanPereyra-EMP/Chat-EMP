@@ -176,11 +176,11 @@
   bottom: 0;
   color: #000;
   display: flex;
-  font-size: 20px;
   height: 90%;
   justify-content: center;
   max-width: 500px;
   position: absolute;
+  overflow: auto;
   right: 0;
   text-align: center;
   transform: translate(500px, 0);
@@ -200,12 +200,16 @@
   }
 }
 #cemp-user-data{
-  margin-top: 30px;
+  position: absolute;
+  top: 0;
   width: 100%;
 }
 #cemp-user-data input{
   margin-bottom: 10px;
   margin-top: 10px;
+}
+#cemp-user-data .error{
+  border: 2px solid #f88;
 }
 #cemp-user-data a{
   color: var(--emp-btn-bg)!important;
@@ -313,7 +317,7 @@
 /* Mobile support */
 @media(max-width:991px){
   #cemp-login{
-    height: 100%;
+    height: auto;
     overflow: auto;
   }
   #cemp-list{
