@@ -9,7 +9,7 @@ function cempRemoveSettings(){
     cempSettingsDisplay = false;
     afterSettings = true;
     loadindMsgs(afterSettings);
-    interval = setInterval(() => {loadindMsgs()}, 1000);
+    interval = setInterval(() => {loadindMsgs()}, 2000);
     return;
   }
 }

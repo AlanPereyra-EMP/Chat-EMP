@@ -51,7 +51,7 @@ function cemp_get_chat_list(){
   $user_id = get_current_user_id();
 
   $user_list = $wpdb->get_results(
-    "SELECT c.id_c, c.user_id1, c.user_id2, u.id_u , u.name, MAX(m.id_m), MAX(maux.id_m)
+    "SELECT c.id_c, c.user_id1, c.user_id2, u.id_u , u.name, MAX(m.id_m) AS id_m, MAX(maux.id_m) AS id_maux
     FROM $table_chats AS c
     JOIN $table_usrs AS u ON c.user_id1 = u.id_u
     LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS m ON c.user_id1 = m.from_id
@@ -76,7 +76,14 @@ function cemp_get_chat_list(){
     $user_name = $user_data->user_login;
     $img_src = get_avatar_url($id_u);
     $img = '<img src="'.$img_src.'"/>';
-    $chats .= '<li onclick="cempGetThisChat(20,'.$user_list[$i]->user_id1.','.$user_list[$i]->user_id2.')">'.$img.$user_name.'</li>';
+
+    $id_m = $user_list[$i]->id_m;
+    $id_maux = $user_list[$i]->id_maux;
+    $max_id = max($id_m, $id_maux);
+
+    $chats .= '<li onclick="cempGetThisChat(20,'.$user_list[$i]->user_id1.','.$user_list[$i]->user_id2.','.$max_id.')">'.
+                $img.$user_name.
+              '</li>';
   }
 
   $chat_list = '<ul>'.$chats.'</ul>';

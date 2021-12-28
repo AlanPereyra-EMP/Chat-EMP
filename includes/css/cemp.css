@@ -191,7 +191,7 @@
 #chat-settings.show{
   transform: translate(0);
 }
-@media (min-width: 768px){
+@media (min-width: 992px){
   #chat-settings{
     border: 1px solid #000
   }

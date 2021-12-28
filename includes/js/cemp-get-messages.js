@@ -5,8 +5,6 @@ var chatLoading = false;
 function cempGetMessages(max, toId, fromId){
   clearInterval(interval);
 
-  currentChat = [toId,fromId];
-
   msgRequest = new FormData();
   msgRequest.append( 'action', 'cemp_get_messages' );
   msgRequest.append( 'max', max );
@@ -14,8 +12,7 @@ function cempGetMessages(max, toId, fromId){
   msgRequest.append( 'fromId', fromId );
 
   chatLoading = true;
-  loadindMsgs();
-  interval = setInterval(() => {loadindMsgs()}, 1000);
+  interval = setInterval(() => {loadindMsgs()}, 2000);
 }
 
 function loadindMsgs(afterSettings) {
