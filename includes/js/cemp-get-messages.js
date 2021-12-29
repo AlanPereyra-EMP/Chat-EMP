@@ -1,9 +1,12 @@
 var interval = '';
 var currentChat = '';
 var chatLoading = false;
+var msgRequest = false;
 
 function cempGetMessages(max, toId, fromId){
   clearInterval(interval);
+
+  currentChat = [toId,fromId];
 
   msgRequest = new FormData();
   msgRequest.append( 'action', 'cemp_get_messages' );
@@ -16,6 +19,10 @@ function cempGetMessages(max, toId, fromId){
 }
 
 function loadindMsgs(afterSettings) {
+  if(!msgRequest){
+    return;
+  }
+  
   if(chatLoading){
     if (!afterSettings) {
       listShow();

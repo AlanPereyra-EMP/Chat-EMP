@@ -15,17 +15,14 @@ function cempUpdateUser(){
   var updatesForm = new FormData(cempUpdatesForm);
   updatesForm.append( 'action', 'cemp_update_user' );
 
-  var log = document.getElementById('cemp-log');
-  var logConfirm = document.getElementById('cemp-log-confirm');
   var pwd = document.getElementById('cemp-pwd');
   var pwdConfirm = document.getElementById('cemp-pwd-confirm');
   var pwdOld = document.getElementById('cemp-pwd-old');
 
-  log.classList.remove('error');
-  logConfirm.classList.remove('error');
   pwd.classList.remove('error');
   pwdConfirm.classList.remove('error');
   pwdOld.classList.remove('error');
+  error.innerHTML = '';
 
   fetch(cempAjax.url, {
     method: 'POST',
@@ -36,18 +33,18 @@ function cempUpdateUser(){
     .then(data => {
       if(data.status == 'success'){
         location.reload();
-      }else if(data.problem == 'user'){
-        error.innerHTML = 'El usuario no coincide';
-        log.classList.add('error');
-        logConfirm.classList.add('error');
       }else if(data.problem == 'pass'){
-        error.innerHTML = 'La contraseña no coincide';
+        error.innerHTML = 'Las contraseñas no coinciden';
         pwd.classList.add('error');
-        pwdConfirm.classList.add('error');;
+        pwdConfirm.classList.add('error');
       }else if(data.problem == 'old_pass'){
         error.innerHTML = 'Tu contraseña actual no es correcta';
         pwdOld.classList.add('error');
-      }else if(data.problem == 'update'){
+      }else if(data.problem == 'empty'){
+        error.innerHTML = 'No hay nada que actualizar';
+        pwd.classList.add('error');
+        pwdConfirm.classList.add('error');
+      }else if (data.problem == 'update'){
         error.innerHTML = 'Hubo un error interno, contactá al administrador';
       }
     });

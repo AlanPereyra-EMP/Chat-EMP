@@ -55,8 +55,9 @@ function cemp_get_chat_list(){
     FROM $table_chats AS c
     JOIN $table_usrs AS u ON c.user_id1 = u.id_u
     LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS m ON c.user_id1 = m.from_id
-    LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS maux ON c.user_id1 = maux.to_id AND c.user_id2 = maux.from_id
     AND c.user_id2 = m.to_id
+    LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS maux ON c.user_id1 = maux.to_id
+    AND c.user_id2 = maux.from_id
     WHERE (c.user_id1 = $user_id OR c.user_id2 = $user_id)
     AND (c.user_id1 != c.user_id2)
     GROUP BY c.id_c

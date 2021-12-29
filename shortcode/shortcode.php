@@ -23,11 +23,13 @@ if(!shortcode_exists('chat-emp')) {
     $changes = $atributes['changes'];
     $mode = $atributes['mode'];
     $cemp_url = plugins_url('', __DIR__ );
+    $favicon = get_site_icon_url();
     $js_variables = '<script>
                       var cempUrl = "'.$cemp_url.'";
                       var cempPass = "'. $cemp_pass .'"; '.
                       'var cempTerms = "'. $terms .'"; '.
                       'var cempPoli = "'. $poli .'"; '.
+                      'var cempFav = "'. $favicon .'"; '.
                     '</script>';
 
     // Enqueue all Js and Css
@@ -70,8 +72,6 @@ if(!shortcode_exists('chat-emp')) {
 
     $settings = '<form id="cemp-user-data">
                   <h4>Actualizar datos</h4>
-                  <input id="cemp-log" class="cemp-form-input" name="log" type="text" placeholder="Nuevo usuario"/>
-                  <input id="cemp-log-confirm" class="cemp-form-input" name="log-confirm" type="text" placeholder="Repetir usuario"/>
                   <input id="cemp-pwd" class="cemp-form-input" name="pwd" type="text" placeholder="Nueva contraseña"/>
                   <input id="cemp-pwd-confirm" class="cemp-form-input" name="pwd-confirm" type="text" placeholder="Repetir contraseña"/>
                   <br>

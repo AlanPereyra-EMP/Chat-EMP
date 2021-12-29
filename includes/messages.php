@@ -69,20 +69,29 @@ function cemp_get_messages(){
   die();
 }
 function cemp_send_messages(){
-  $msg = $_POST['msg'];
-  $user_id = get_current_user_id();
-  $to_id = explode(',',$_POST['chat']);
-  if($to_id[0] == $user_id){
-    $to_id = $to_id[1];
-  }else{
-    $to_id = $to_id[0];
-  }
-  $to_id = intval($to_id);
-  $now = date("d/m/Y H:i");
-
   global $wpdb;
 
-  $table_msgs = $wpdb->prefix .'cemp_msgs';
+  $msg = $_POST['msg'];
+  $chat_ids = $_POST['chat'];
+
+  $chat_ids = explode(',', $chat_ids);
+  $user_id = get_current_user_id();
+
+  if($chat_ids[0] == $user_id){
+    $to_id = $chat_ids[1];
+    $from_id = $chat_ids[0];
+  }else{
+    $to_id = $chat_ids[0];
+    $from_id = $chat_ids[1];
+  }
+  $to_id = intval($to_id);
+  $from_id = intval($from_id);
+
+  if($user_id != $to_id && $user_id != $from_id){
+    die();
+  }
+
+  $now = date("d/m/Y H:i");
 
   $data = array(
     'from_id' => $user_id,
@@ -100,6 +109,8 @@ function cemp_send_messages(){
   $format = array(
     '%d','%d','%s','%s'
   );
+
+  $table_msgs = $wpdb->prefix .'cemp_msgs';
 
   $wpdb->insert($table_msgs,$data,$format);
 

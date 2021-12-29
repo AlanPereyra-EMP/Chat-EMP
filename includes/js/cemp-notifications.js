@@ -1,7 +1,7 @@
 function cempNotificationPermission(){
-  // Let's check if the browser supports notifications
-  if(!('Notification' in window)){
+  if(!Notification){
     console.log("Este navegador no soporta notificaciones.");
+    return;
   }else{
     if(checkNotificationPromise()){
       Notification.requestPermission()
@@ -26,9 +26,13 @@ function checkNotificationPromise(){
   }
   return true;
 }
+cempNotificationPermission()
 
 var notiSound = new Audio(cempAudio.notification);
 function cempNotification(msg, body){
-  new Notification(msg, {icon: 'https://empralidad.com.ar/wp-content/uploads/2020/07/Isotipo-v3-fondo-blanco.png', body: body});
+  new Notification(msg,
+    {icon: cempFav,
+     body: body
+    });
   notiSound.play();
 }
