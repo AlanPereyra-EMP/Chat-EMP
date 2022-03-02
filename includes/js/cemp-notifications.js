@@ -36,6 +36,4 @@ function cempNotification(msg, body){
   var n = new Notification(msg, options);
   setTimeout(n.close.bind(n), 5000);
   notiSound.play();
-
-  alert('asd');
 }
