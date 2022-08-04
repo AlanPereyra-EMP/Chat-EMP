@@ -20,15 +20,41 @@ function cemp_login_user(){
 
   die();
 }
+
+function cemp_check_password($access){
+  global $wpdb;
+
+  $table_settings = $wpdb->prefix.'cemp_settings';
+
+  $settings = $wpdb->get_results(
+    "SELECT * FROM  $table_settings
+    ORDER BY `id_s` DESC
+    LIMIT 1"
+  );
+
+  $server_access = $settings[0]->access;
+
+  if($server_access == $access){
+    return true;
+  }else{
+    return false;
+  }
+}
 function cemp_logup_user(){
 
   $user_name = $_POST['log'];
   $user_email = $_POST['email'];
   $password = $_POST['pwd'];
   $user_date = $_POST['date'];
+  $access = $_POST['access'];
 
   $user_id = username_exists( $user_name );
   $email_id = email_exists( $user_email );
+
+  if(!cemp_check_password($access)){
+    echo json_encode(array('problem' => 'access'));
+    die();
+  }
 
   if ( !$user_id && !$email_id ) {
     $user_id = wp_create_user( $user_name, $password, $user_email );

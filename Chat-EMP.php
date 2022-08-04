@@ -8,7 +8,7 @@ Author URI: https://empralidad.com.ar/
 Text Domain: cemp
 License: Attribution-NonCommercial-NoDerivatives 3.0 IGO
 License URI: https://creativecommons.org/licenses/by-nc-nd/3.0/igo/legalcode
-Version: 1.0.4
+Version: 1.1.0
 */
 if ( ! defined( 'ABSPATH' ) ){
 	exit;
@@ -21,5 +21,7 @@ require_once plugin_dir_path(__FILE__).'/includes/cemp-tables.php';
 require_once plugin_dir_path(__FILE__).'/includes/messages.php';
 require_once plugin_dir_path(__FILE__).'/includes/chats.php';
 require_once plugin_dir_path(__FILE__).'/includes/users.php';
+require_once plugin_dir_path(__FILE__).'/includes/update-user.php';
+require_once plugin_dir_path(__FILE__).'/includes/settings.php';
 require_once plugin_dir_path(__FILE__).'/shortcode/shortcode.php';
 ?>

@@ -21,23 +21,26 @@ function listShow(){
     cempListDisplay.classList.add('cemp-hide-list');
     cempList.classList.remove('cemp-hide-list');
     listDisplay = true;
+    cempRemoveSettings();
   }
 }
 
-// Todo fecth list of chats
 function cempGetChatList() {
   let data = new FormData();
   data.append( 'action', 'cemp_get_chat_list' );
 
-  fetch(cempAjax.url, {
-    method: 'POST',
-    mode: 'same-origin',
-    body: data
-  })
-    .then(res => res.json())
-    .then(data => {
-      cempList.innerHTML = `${data}`;
-    });
+  cempList.innerHTML = `<span class="cemp-loading-list">Cargando...</span>`;
+  setInterval(()=>{
+    fetch(cempAjax.url, {
+      method: 'POST',
+      mode: 'same-origin',
+      body: data
+    })
+      .then(res => res.json())
+      .then(data => {
+        cempList.innerHTML = `${data}`;
+      });
+  }, 2000);
 }
 cempGetChatList();
 

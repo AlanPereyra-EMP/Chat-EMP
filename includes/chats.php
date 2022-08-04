@@ -10,7 +10,9 @@ function has_user_chat($admins){
   $user_id = get_current_user_id();
 
   $user_has_chat = $wpdb->get_results(
-    "SELECT * FROM $table_chats WHERE EXISTS (SELECT 1 FROM $table_chats WHERE user_id1 = $user_id OR user_id2 = $user_id)"
+    "SELECT *
+    FROM $table_chats
+    WHERE EXISTS (SELECT 1 FROM $table_chats WHERE user_id1 = $user_id OR user_id2 = $user_id)"
   );
 
   $now = date("d/m/Y H:i");
@@ -20,6 +22,10 @@ function has_user_chat($admins){
 
   if(!$user_has_chat){
     for($i = 0; $i < $admins_count; $i++){
+      if($cemp_admins[$i] == $user_id){
+        return;
+      }
+
       $data = array(
         'user_id1' => $user_id,
         'user_id2' => $cemp_admins[$i],
@@ -45,7 +51,17 @@ function cemp_get_chat_list(){
   $user_id = get_current_user_id();
 
   $user_list = $wpdb->get_results(
-    "SELECT * FROM $table_chats, $table_usrs WHERE (`user_id1` = $user_id OR `user_id2` = $user_id) AND (`user_id1` != `user_id2`) GROUP BY `id_c`"
+    "SELECT c.id_c, c.user_id1, c.user_id2, u.id_u , u.name, MAX(m.id_m) AS id_m, MAX(maux.id_m) AS id_maux
+    FROM $table_chats AS c
+    JOIN $table_usrs AS u ON c.user_id1 = u.id_u
+    LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS m ON c.user_id1 = m.from_id
+    AND c.user_id2 = m.to_id
+    LEFT JOIN (SELECT * from $table_msgs ORDER BY id_m) AS maux ON c.user_id1 = maux.to_id
+    AND c.user_id2 = maux.from_id
+    WHERE (c.user_id1 = $user_id OR c.user_id2 = $user_id)
+    AND (c.user_id1 != c.user_id2)
+    GROUP BY c.id_c
+    ORDER BY GREATEST(ifnull(max(m.id_m),0), ifnull(max(maux.id_m),0)) DESC;"
   );
 
   $count = $user_list;
@@ -61,7 +77,14 @@ function cemp_get_chat_list(){
     $user_name = $user_data->user_login;
     $img_src = get_avatar_url($id_u);
     $img = '<img src="'.$img_src.'"/>';
-    $chats .= '<li onclick="cempGetThisChat(20,'.$user_list[$i]->user_id1.','.$user_list[$i]->user_id2.')">'.$img.$user_name.'</li>';
+
+    $id_m = $user_list[$i]->id_m;
+    $id_maux = $user_list[$i]->id_maux;
+    $max_id = max($id_m, $id_maux);
+
+    $chats .= '<li onclick="cempGetThisChat(20,'.$user_list[$i]->user_id1.','.$user_list[$i]->user_id2.','.$max_id.')">'.
+                $img.$user_name.
+              '</li>';
   }
 
   $chat_list = '<ul>'.$chats.'</ul>';

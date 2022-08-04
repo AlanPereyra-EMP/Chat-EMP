@@ -14,6 +14,6 @@ function cempSendMessages(){
   })
     .then(res => res.json())
     .then(data => {
-      // 
+      cempNotification('Tenés un mensaje nuevo', data.messages)
     });
 }

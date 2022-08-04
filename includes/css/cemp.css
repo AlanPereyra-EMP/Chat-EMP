@@ -12,6 +12,7 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  overflow: auto;
   position: relative;
 }
 #cemp-login{
@@ -27,16 +28,17 @@
   margin-top: 30px;
   text-align: center;
 }
-#cemp-login input, #cemp-login button, #cemp-login label, #cemp-login .change-form{
+#cemp-login input, #cemp-login button, #cemp-login label,
+#cemp-login .change-form, .cemp-form-input{
   border-radius: 13px;
   display: block;
   margin: auto;
   width: 90%;
 }
-#cemp-login input{
+.cemp-form-input{
   border: 2px solid #777;
   height: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 20px!important;
   margin-top: 20px;
 }
 #cemp-login label{
@@ -113,8 +115,16 @@
   width: 20%;
   z-index: 2;
 }
-#cemp-list::-webkit-scrollbar-thumb{
-  background: #888;
+.cemp-loading-list{
+  align-items: center;
+  color: #fff;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 0;
+}
+#cemp-list::-webkit-scrollbar{
+  display: none;
 }
 #cemp-list ul {
   padding: 0;
@@ -156,12 +166,76 @@
 }
 #cemp-chat-div{
   height: 100%;
+  overflow: hidden;
   width: 100%;
 }
+#cemp-chat-info{
+  align-items: center;
+  display: flex!important;
+  height: 10%;
+  justify-content: center;
+}
+.cemp-list-icons{
+  cursor: pointer;
+}
+#cemp-list-display{
+  left: 15px;
+  position: absolute;
+}
+#cemp-settings-icon{
+  padding: 10px;
+  position: absolute;
+  right: 15px;
+}
+#chat-settings{
+  align-items: center;
+  background: #fff;
+  bottom: 0;
+  color: #000;
+  display: flex;
+  height: 90%;
+  justify-content: center;
+  max-width: 500px;
+  position: absolute;
+  overflow: auto;
+  right: 0;
+  text-align: center;
+  transform: translate(500px, 0);
+  transition: .3s ease;
+  width: 100%;
+  z-index: 2;
+}
+#chat-settings.show{
+  transform: translate(0);
+}
+@media (min-width: 992px){
+  #chat-settings{
+    border: 1px solid #000
+  }
+  #cemp-list-display{
+    display: none;
+  }
+}
+#cemp-user-data{
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+#cemp-user-data input{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#cemp-user-data .error{
+  border: 2px solid #f88;
+}
+#cemp-user-data a{
+  color: var(--emp-btn-bg)!important;
+  font-weight: 700;
+}
 #cemp-messages{
-  border-bottom: 40px solid transparent;
+  border-bottom: 90px solid transparent;
   font-size: 18px;
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -260,23 +334,20 @@
 /* Mobile support */
 @media(max-width:991px){
   #cemp-login{
-    height: 100%;
+    height: auto;
     overflow: auto;
-  }
-  #cemp-list-display{
-    display: block!important;
   }
   #cemp-list{
     height: 100%;
     position: absolute;
     width: 100%;
   }
+  .cemp-loading-list{
+    font-size: 2rem;
+  }
   .cemp-hide-list{
     width: 0!important;
     overflow: hidden;
-  }
-  .cemp-height-admin{
-    height: calc(100% - 60px)!important;
   }
   #cemp-textarea-div{
     position: fixed;

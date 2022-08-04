@@ -9,26 +9,24 @@ function cempLogUp() {
       El permiso de acceso es un código que te dará el admin del sitio.
       Para obtenerlo contacta al administrador.
     </label>
-    <input name="access" type="text" placeholder="Permiso de acceso" required/>`;
+    <input class="cemp-form-input" name="access" type="text" placeholder="Permiso de acceso" required/>`;
   }
   if(cempTerms != 'false' && cempPoli != 'false'){
-    var terms = cempTerms;
-    var poli = cempPoli;
     termsPoli = `
     <label>
-      Registrandote estás aceptando los <a href="${terms}">Terminos y condiciones</a>
-      y las <a href="${poli}">Políticas de privacidad</a>
+      Registrandote estás aceptando los <a href="${cempTerms}">Terminos y condiciones</a>
+      y las <a href="${cempPoli}">Políticas de privacidad</a>
     </label>`;
   }
 
   cempLoginH2.innerHTML = '<h2>Registrarse</h2>';
   cempLoginForm.innerHTML = `
     <label id="login-error"></label>
-    <input name="email" type="text" placeholder="Email" required/>
-    <input name="log" type="text" placeholder="Usuario" required/>
-    <input name="pwd" type="text" placeholder="Contraseña" required/>
+    <input class="cemp-form-input" name="email" type="text" placeholder="Email" required/>
+    <input class="cemp-form-input" name="log" type="text" placeholder="Usuario" required/>
+    <input class="cemp-form-input" name="pwd" type="text" placeholder="Contraseña" required/>
     ${pass}
-    <input name="date" type="hidden" value="${date}"/>
+    <input class="cemp-form-input" name="date" type="hidden" value="${date}"/>
     <button class="success" onclick="fetchLogup()">Registrarse</button>
     ${termsPoli}
     <p class="change-form">¿Ya tienes cuenta? <a href="#" onclick="cempLogIn();">Ingresar</a></p>`;
@@ -37,12 +35,7 @@ function cempLogUp() {
 function fetchLogup(){
   error = document.getElementById('login-error');
   error.innerHTML = '';
-  if(cempPass != 'false'){
-    if(cempLoginForm.access.value != cempPass){
-      error.innerHTML = 'El permiso de acceso no coincide';
-      return;
-    }
-  }
+
   if(cempLoginForm.log.value.length < 3||cempLoginForm.pwd.value.length < 3||cempLoginForm.email.value.length < 10){
     return
   }
@@ -57,9 +50,11 @@ function fetchLogup(){
   })
   .then(res => res.json())
   .then(data => {
-    if(data.is_registered && data.problem == 'user'){
+    if(data.problem == 'access'){
+      error.innerHTML = 'El permiso de acceso no coincide';
+    }else if(data.problem == 'user'){
       error.innerHTML = 'El nombre usuario ya está registrado';
-    }else if(data.is_registered && data.problem == 'email'){
+    }else if(data.problem == 'email'){
       error.innerHTML = 'El email ya está siendo usado por un usuario';
     }else{
       location.reload();
