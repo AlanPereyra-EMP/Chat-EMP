@@ -34,10 +34,10 @@ function cempGetChatList() {
     mode: 'same-origin',
     body: data
   })
-  .then(res => res.json())
-  .then(data => {
-    cempList.innerHTML = `${data}`;
-  });
+    .then(res => res.json())
+    .then(data => {
+      cempList.innerHTML = `${data}`;
+    });
 }
 cempGetChatList();
 

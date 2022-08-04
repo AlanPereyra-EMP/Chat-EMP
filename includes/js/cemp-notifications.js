@@ -1,6 +1,6 @@
 function cempNotificationPermission(){
   // Let's check if the browser supports notifications
-  if(!('Notification' in window)){
+  if(!Notification){
     console.log("Este navegador no soporta notificaciones.");
   }else{
     if(checkNotificationPromise()){

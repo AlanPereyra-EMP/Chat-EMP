@@ -1,6 +1,5 @@
 #cemp-page{
   background: #fff;
-  border-top: 60px solid #262626;
   height: 100vh;/* theme must be support viewport */
   left: 0;
   position: fixed;
@@ -55,7 +54,7 @@
   margin-bottom: -20px;
 }
 #cemp-login a{
-  color: #005777!important;
+  color: var(--emp-btn-bg)!important;
 }
 #cemp-login input:focus, #cemp-login button:focus{
   border: 2px solid #007ca9;
@@ -68,17 +67,17 @@
   margin-top: 10px;
 }
 #cemp-login .success{
-  background: #005777;
+  background: var(--emp-btn-bg);
   border: none;
-  color: #fff;
+  color: var(--emp-btn-color);
   cursor: pointer;
   height: 60px;
   margin-top: 50px;
 }
 #cemp-list-display{
-  background: #005777;
+  background: var(--emp-btn-bg);
   border-radius: 0 30px 30px 0;
-  color: #fff;
+  color: var(--emp-btn-color);
   cursor: pointer;
   display: none;
   height: 70px;
@@ -187,14 +186,14 @@
   width: 85%;
 }
 #cemp-messages div.receive{
-  background: #005777;
+  background: var(--emp-head-title-bg);
   border-radius: 0 20px 20px 20px;
-  color: #fff;
+  color: var(--emp-head-title-color);
 }
 #cemp-messages div.send{
-  background: #fff;
+  background: var(--emp-content-bg);
   border-radius: 20px 20px 0 20px;
-  color: #000;
+  color: var(--emp-content-color);
   margin-left: auto;
 }
 #cemp-messages div p{
@@ -246,10 +245,10 @@
   width: 100%;
 }
 #message-button{
-  background: #005777;
+  background: var(--emp-btn-bg);
   border: none;
   border-radius: 0 13px 13px 0;
-  color: #fff;
+  color: var(--emp-btn-color);
   font-size: 18px;
   padding: 0;
   visibility: hidden;
@@ -347,6 +346,9 @@ textarea:focus{
 }
 
 /* Empralidad-Theme support */
+#cemp-page{
+  border-top: 60px solid var(--emp-nav-bg);
+}
 #top-notice{
   display: none;
 }
